@@ -1,0 +1,2501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlexiTiff — Mobile App Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #F4A226;
+    --saffron-light: #FBD17A;
+    --turmeric: #E8861A;
+    --cream: #FFF8EE;
+    --charcoal: #1C1C1E;
+    --slate: #3A3A3C;
+    --muted: #8E8E93;
+    --surface: #FFFFFF;
+    --card-bg: #F9F4EC;
+    --green: #34C759;
+    --red: #FF3B30;
+    --blue: #007AFF;
+    --border: rgba(0,0,0,0.08);
+    --shadow-soft: 0 4px 24px rgba(0,0,0,0.07);
+    --shadow-card: 0 8px 32px rgba(0,0,0,0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F0EAE0;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--charcoal);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(244,162,38,0.13) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(232,134,26,0.10) 0%, transparent 60%);
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    text-align: center;
+    padding: 64px 24px 48px;
+  }
+  .page-header .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--turmeric);
+    margin-bottom: 12px;
+  }
+  .page-header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 800;
+    color: var(--charcoal);
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  .page-header h1 span {
+    color: var(--saffron);
+  }
+  .page-header p {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--turmeric);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .section-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* ── FLOW SECTION ── */
+  .flow-section {
+    max-width: 1280px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+  .flow-header {
+    margin-bottom: 36px;
+  }
+
+  /* ── PHONE GRID ── */
+  .phone-row {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+    scrollbar-width: none;
+  }
+  .phone-row::-webkit-scrollbar { display: none; }
+
+  /* ── PHONE FRAME ── */
+  .phone-wrap {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .phone-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  .phone {
+    width: 260px;
+    height: 560px;
+    background: var(--surface);
+    border-radius: 40px;
+    box-shadow:
+      0 0 0 10px #1C1C1E,
+      0 0 0 12px #2C2C2E,
+      var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Notch */
+  .phone::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 24px;
+    background: #1C1C1E;
+    border-radius: 0 0 16px 16px;
+    z-index: 100;
+  }
+
+  .phone-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ════════════════════════════════
+     SCREEN 1: Splash
+  ════════════════════════════════ */
+  .splash-screen {
+    background: linear-gradient(160deg, #1C1C1E 0%, #2D1A00 100%);
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .splash-logo-ring {
+    width: 72px;
+    height: 72px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--saffron), var(--turmeric));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    box-shadow: 0 0 40px rgba(244,162,38,0.5);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%,100% { box-shadow: 0 0 30px rgba(244,162,38,0.4); }
+    50% { box-shadow: 0 0 60px rgba(244,162,38,0.7); }
+  }
+  .splash-logo-ring .logo-icon { font-size: 32px; }
+  .splash-app-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #FFF;
+    letter-spacing: 0.01em;
+  }
+  .splash-tagline {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .splash-loader {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+  }
+  .splash-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(244,162,38,0.4);
+  }
+  .splash-dot:nth-child(2) { background: var(--saffron); }
+
+  /* ════════════════════════════════
+     SCREEN 2: Value Prop Carousel
+  ════════════════════════════════ */
+  .carousel-screen {
+    background: var(--cream);
+    padding: 36px 20px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .carousel-hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .carousel-emoji {
+    font-size: 52px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .carousel-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .carousel-body {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin: 16px 0 12px;
+  }
+  .c-dot {
+    width: 6px; height: 6px;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.15);
+    transition: all 0.3s;
+  }
+  .c-dot.active {
+    width: 18px;
+    background: var(--saffron);
+  }
+  .carousel-btn {
+    background: var(--charcoal);
+    color: #FFF;
+    border: none;
+    border-radius: 14px;
+    padding: 13px;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  /* ════════════════════════════════
+     SCREEN 3: Phone Auth
+  ════════════════════════════════ */
+  .auth-screen {
+    background: var(--surface);
+    padding: 36px 20px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .auth-screen .screen-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+    margin-top: 8px;
+  }
+  .auth-screen .screen-sub {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 28px;
+  }
+  .auth-flag-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .auth-flag {
+    padding: 13px 12px;
+    font-size: 14px;
+    color: var(--slate);
+    border-right: 1.5px solid var(--border);
+    background: #F5F5F7;
+    font-weight: 500;
+  }
+  .auth-input-fake {
+    flex: 1;
+    padding: 13px 14px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .auth-microcopy {
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    padding-left: 2px;
+  }
+  .auth-btn {
+    background: var(--saffron);
+    color: var(--charcoal);
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: 0.01em;
+  }
+  .auth-terms {
+    font-size: 10px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+  .auth-terms span { color: var(--turmeric); }
+  .auth-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 20px 0;
+  }
+  .otp-boxes {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .otp-box {
+    width: 44px;
+    height: 52px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    background: #F5F5F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--charcoal);
+  }
+  .otp-box.filled { border-color: var(--saffron); background: #FFF8EE; }
+  .otp-box.active { border-color: var(--saffron); border-width: 2px; }
+  .resend-text {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .resend-text span { color: var(--turmeric); }
+
+  /* ════════════════════════════════
+     SCREEN 4: Taste Profile
+  ════════════════════════════════ */
+  .taste-screen {
+    background: var(--cream);
+    padding: 36px 18px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .taste-screen .screen-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .taste-screen .screen-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .dietary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin-bottom: 16px;
+  }
+  .diet-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .diet-card.selected {
+    border-color: var(--saffron);
+    background: #FFF8EE;
+  }
+  .diet-card.selected .diet-check { opacity: 1; }
+  .diet-icon { font-size: 16px; }
+  .diet-name {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--charcoal);
+    flex: 1;
+    line-height: 1.3;
+  }
+  .diet-check {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--saffron);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: white;
+    opacity: 0;
+  }
+  .blacklist-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .blacklist-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .bl-tag {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 9px;
+    font-size: 10px;
+    color: var(--slate);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .bl-tag.blocked {
+    border-color: var(--red);
+    background: #FFF2F0;
+    color: var(--red);
+  }
+  .bl-tag.liked {
+    border-color: var(--green);
+    background: #F0FFF4;
+    color: var(--green);
+  }
+  .taste-cta {
+    background: var(--charcoal);
+    color: #FFF;
+    border: none;
+    border-radius: 14px;
+    padding: 13px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-top: auto;
+    letter-spacing: 0.02em;
+  }
+
+  /* ════════════════════════════════
+     SCREEN 5: Plan Selection
+  ════════════════════════════════ */
+  .plan-screen {
+    background: var(--surface);
+    padding: 36px 18px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .plan-screen .screen-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .plan-screen .screen-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+  .plan-card {
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
+  }
+  .plan-card.selected {
+    border-color: var(--saffron);
+    background: #FFF8EE;
+  }
+  .plan-card .plan-badge {
+    position: absolute;
+    top: -1px;
+    right: 14px;
+    background: var(--saffron);
+    color: var(--charcoal);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 0 0 8px 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .plan-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 3px;
+  }
+  .plan-details {
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .plan-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--charcoal);
+  }
+  .plan-price span {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+  .plan-perks {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .plan-perk {
+    font-size: 9px;
+    background: rgba(52,199,89,0.1);
+    color: #1a7a33;
+    border-radius: 6px;
+    padding: 3px 7px;
+  }
+  .plan-cta {
+    background: var(--saffron);
+    color: var(--charcoal);
+    border: none;
+    border-radius: 14px;
+    padding: 13px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    width: 100%;
+    margin-top: auto;
+    letter-spacing: 0.01em;
+  }
+
+  /* ════════════════════════════════
+     SCREEN 6: HOME — Weekly Hub
+  ════════════════════════════════ */
+  .home-screen {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+  }
+  .home-nav {
+    padding: 32px 16px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .home-greeting {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .home-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--charcoal);
+  }
+  .home-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--saffron), var(--turmeric));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .credits-pill {
+    background: var(--charcoal);
+    color: var(--saffron);
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-right: 8px;
+  }
+
+  /* Calendar strip */
+  .cal-strip {
+    padding: 0 14px 12px;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .cal-strip::-webkit-scrollbar { display: none; }
+  .cal-day {
+    flex: 0 0 auto;
+    width: 38px;
+    padding: 8px 4px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .cal-day .day-name {
+    font-size: 9px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .cal-day .day-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--slate);
+  }
+  .cal-day.today {
+    background: var(--charcoal);
+  }
+  .cal-day.today .day-name { color: rgba(255,255,255,0.5); }
+  .cal-day.today .day-num { color: #FFF; }
+  .cal-day.has-meal::after {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--saffron);
+    margin: 3px auto 0;
+  }
+  .cal-day.today.has-meal::after { background: var(--saffron); }
+
+  /* Meal card */
+  .meal-card {
+    margin: 0 14px;
+    background: var(--surface);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .meal-img {
+    width: 100%;
+    height: 110px;
+    background: linear-gradient(135deg, #F4A226 0%, #E8861A 40%, #C4622E 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+  }
+  .meal-img .meal-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.5);
+    color: #FFF;
+    font-size: 9px;
+    padding: 3px 7px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .meal-info {
+    padding: 12px 14px;
+  }
+  .meal-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .meal-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 12px;
+  }
+  .meal-item-tag {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 3px 8px;
+    font-size: 9px;
+    color: var(--slate);
+  }
+  .meal-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .meal-btn {
+    flex: 1;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 6px;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+  }
+  .meal-btn-primary {
+    background: var(--saffron);
+    color: var(--charcoal);
+  }
+  .meal-btn-secondary {
+    background: var(--card-bg);
+    color: var(--slate);
+    border: 1.5px solid var(--border) !important;
+  }
+
+  /* Bottom nav */
+  .bottom-nav {
+    display: flex;
+    padding: 10px 14px 16px;
+    gap: 4px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    margin-top: auto;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 4px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .nav-item.active { background: rgba(244,162,38,0.12); }
+  .nav-icon { font-size: 16px; }
+  .nav-label {
+    font-size: 8px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .nav-item.active .nav-label { color: var(--turmeric); font-weight: 600; }
+
+  /* ════════════════════════════════
+     SCREEN 7: SWAP Modal
+  ════════════════════════════════ */
+  .swap-screen {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .swap-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    border-radius: 40px;
+    z-index: 5;
+  }
+  .swap-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-radius: 24px 24px 0 0;
+    padding: 12px 18px 24px;
+    z-index: 10;
+  }
+  .swap-handle {
+    width: 36px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 0 auto 16px;
+  }
+  .swap-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .swap-sub {
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .current-item {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    border: 1.5px solid var(--border);
+  }
+  .current-item-icon { font-size: 22px; }
+  .current-item-info {}
+  .current-item-label {
+    font-size: 9px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .current-item-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+  .current-item-arrow {
+    margin-left: auto;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .swap-options-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .swap-option {
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  .swap-option.selected {
+    border-color: var(--saffron);
+    background: #FFF8EE;
+  }
+  .swap-option-icon { font-size: 20px; }
+  .swap-option-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--charcoal);
+    flex: 1;
+  }
+  .swap-credit-badge {
+    font-size: 9px;
+    padding: 3px 7px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .free-badge { background: rgba(52,199,89,0.15); color: #1a7a33; }
+  .credit-badge { background: rgba(244,162,38,0.15); color: var(--turmeric); }
+  .swap-radio {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .swap-option.selected .swap-radio {
+    border-color: var(--saffron);
+    background: var(--saffron);
+  }
+  .swap-option.selected .swap-radio::after {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: white;
+  }
+  .swap-confirm-btn {
+    background: var(--saffron);
+    color: var(--charcoal);
+    border: none;
+    border-radius: 14px;
+    padding: 13px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 6px;
+    letter-spacing: 0.01em;
+  }
+  /* mini bg behind overlay */
+  .swap-bg-mini {
+    padding: 32px 14px 0;
+    flex: 1;
+    opacity: 0.5;
+  }
+
+  /* ════════════════════════════════
+     SCREEN 8: Skip Confirm
+  ════════════════════════════════ */
+  .skip-screen {
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px 24px;
+    text-align: center;
+    gap: 0;
+  }
+  .skip-anim {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #F0FFF4, #C6F6D5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+    position: relative;
+    animation: bounce-in 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  }
+  @keyframes bounce-in {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .skip-anim::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px dashed rgba(52,199,89,0.3);
+    border-radius: 50%;
+    animation: spin 8s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .skip-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .skip-body {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 200px;
+  }
+  .credit-added-pill {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 20px;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+  .credit-added-label {
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .credit-added-amount {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--green);
+  }
+  .credit-added-desc {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .skip-btn {
+    background: var(--charcoal);
+    color: #FFF;
+    border: none;
+    border-radius: 14px;
+    padding: 13px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: 0.02em;
+  }
+
+  /* ════════════════════════════════
+     SCREEN 9: Wallet
+  ════════════════════════════════ */
+  .wallet-screen {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+  }
+  .wallet-header {
+    background: var(--charcoal);
+    padding: 32px 16px 20px;
+    color: #FFF;
+  }
+  .wallet-nav-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .wallet-balance-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 4px;
+  }
+  .wallet-balance {
+    font-family: 'Syne', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--saffron);
+    margin-bottom: 2px;
+  }
+  .wallet-renewal {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+  }
+  .wallet-body {
+    padding: 16px;
+    flex: 1;
+    overflow: hidden;
+  }
+  .wallet-section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .txn-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--surface);
+    border-radius: 12px;
+    margin-bottom: 7px;
+  }
+  .txn-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .txn-icon.credit { background: rgba(52,199,89,0.12); }
+  .txn-icon.debit { background: rgba(255,59,48,0.10); }
+  .txn-name {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--charcoal);
+    flex: 1;
+  }
+  .txn-date {
+    font-size: 9px;
+    color: var(--muted);
+  }
+  .txn-amount {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .txn-amount.credit { color: var(--green); }
+  .txn-amount.debit { color: var(--red); }
+
+  /* ════════════════════════════════
+     PERSONA CARDS
+  ════════════════════════════════ */
+  .persona-section {
+    max-width: 1280px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .persona-card {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+  }
+  .persona-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .persona-card.rohan::before { background: linear-gradient(90deg, var(--saffron), var(--turmeric)); }
+  .persona-card.priya::before { background: linear-gradient(90deg, #A78BFA, #7C3AED); }
+  .persona-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .persona-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .persona-card.rohan .persona-avatar { background: linear-gradient(135deg, #FFF3CD, #FFE082); }
+  .persona-card.priya .persona-avatar { background: linear-gradient(135deg, #EDE9FE, #DDD6FE); }
+  .persona-meta {}
+  .persona-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--charcoal);
+  }
+  .persona-role {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .persona-quote {
+    font-size: 13px;
+    color: var(--slate);
+    font-style: italic;
+    line-height: 1.6;
+    border-left: 3px solid var(--saffron);
+    padding-left: 12px;
+    margin-bottom: 20px;
+  }
+  .persona-card.priya .persona-quote { border-left-color: #7C3AED; }
+  .persona-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .persona-col-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .persona-col-title.goals { color: var(--green); }
+  .persona-col-title.pain { color: var(--red); }
+  .persona-point {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-size: 11px;
+    color: var(--slate);
+    line-height: 1.4;
+  }
+  .persona-point::before {
+    content: '•';
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .persona-col-title.goals + .persona-point-list .persona-point::before { color: var(--green); }
+  .pain-list .persona-point::before { color: var(--red); }
+  .persona-opp {
+    margin-top: 16px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .persona-opp-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--turmeric);
+    margin-bottom: 4px;
+  }
+  .persona-opp-text {
+    font-size: 11px;
+    color: var(--slate);
+    line-height: 1.5;
+  }
+
+  /* ════════════════════════════════
+     JOURNEY MAP
+  ════════════════════════════════ */
+  .journey-section {
+    max-width: 1280px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+  .journey-track {
+    position: relative;
+    margin-top: 36px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--saffron) transparent;
+  }
+  .journey-inner {
+    display: flex;
+    gap: 0;
+    min-width: 900px;
+    position: relative;
+  }
+  .journey-inner::before {
+    content: '';
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    right: 32px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--saffron), var(--turmeric), var(--green));
+  }
+  .journey-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 8px;
+  }
+  .journey-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--saffron);
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--saffron);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: white;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+  .journey-step:nth-child(3) .journey-dot { background: var(--turmeric); box-shadow: 0 0 0 2px var(--turmeric); }
+  .journey-step:nth-child(5) .journey-dot { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+  .journey-step:nth-child(7) .journey-dot { background: var(--blue); box-shadow: 0 0 0 2px var(--blue); }
+  .journey-card {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 14px;
+    width: 100%;
+    box-shadow: var(--shadow-soft);
+  }
+  .journey-stage {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--turmeric);
+    margin-bottom: 6px;
+  }
+  .journey-action {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .journey-emotion {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .journey-feeling {
+    font-size: 16px;
+  }
+
+  /* ════════════════════════════════
+     FOOTER
+  ════════════════════════════════ */
+  .page-footer {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+  .page-footer p {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .page-footer strong { color: var(--charcoal); }
+
+  /* ── Flow connector lines ── */
+  .flow-connector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0;
+  }
+  .fc-label {
+    font-size: 9px;
+    color: var(--muted);
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--saffron); border-radius: 2px; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .phone-row { gap: 16px; }
+    .phone { width: 220px; height: 480px; }
+    .flow-section, .persona-section, .journey-section { padding: 0 16px; }
+    .persona-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="label">UX Case Study — Mobile App · Double Diamond</div>
+  <h1>Flexi<span>Tiff</span></h1>
+  <p style="font-size:18px;color:var(--slate);font-weight:500;margin-bottom:8px;">Why can't tiffin subscribers customize daily meals?</p>
+  <p>A full Double Diamond case study — from market research to interactive wireframes — for a subscription tiffin app with smart meal customization, swap credits, and zero food guilt.</p>
+  <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:28px;">
+    <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">📱 Consumer Mobile App</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">🎨 Sketch + InVision</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">🇮🇳 Urban India Market</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">🔄 Double Diamond Process</div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════
+     DOUBLE DIAMOND PROCESS
+══════════════════════════════ -->
+
+<!-- Nav Pills -->
+<div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 24px 48px;">
+  <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:7px 16px;font-size:11px;font-weight:600;color:var(--turmeric);font-family:'Syne',sans-serif;">01 Discover</div>
+  <div style="width:24px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;">→</div>
+  <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:7px 16px;font-size:11px;font-weight:600;color:var(--slate);font-family:'Syne',sans-serif;">02 Define</div>
+  <div style="width:24px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;">→</div>
+  <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:7px 16px;font-size:11px;font-weight:600;color:var(--slate);font-family:'Syne',sans-serif;">03 Develop</div>
+  <div style="width:24px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;">→</div>
+  <div style="background:var(--charcoal);border:1.5px solid var(--charcoal);border-radius:20px;padding:7px 16px;font-size:11px;font-weight:600;color:var(--saffron);font-family:'Syne',sans-serif;">04 Deliver</div>
+</div>
+
+<!-- ─── DISCOVER ─── -->
+<section style="max-width:1280px;margin:0 auto 80px;padding:0 32px;">
+  <div style="margin-bottom:36px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#FFF3CD,#FFE082);border-radius:20px;padding:6px 14px;margin-bottom:14px;">
+      <span style="font-size:14px;">🔍</span>
+      <span style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#92600A;">Phase 01 · Discover</span>
+    </div>
+    <div style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--charcoal);margin-bottom:8px;">Market Study &amp; Context</div>
+    <div style="font-size:14px;color:var(--muted);line-height:1.6;max-width:600px;">The urban meal delivery market is booming — but subscription retention tells a different story. We dug into the data and spoke with users to understand the real problem.</div>
+  </div>
+
+  <!-- Stats Row -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px;">
+
+    <div style="background:var(--surface);border-radius:20px;padding:24px;box-shadow:var(--shadow-card);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-12px;right:-12px;width:80px;height:80px;background:rgba(255,59,48,0.06);border-radius:50%;"></div>
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);margin-bottom:10px;">Churn Rate</div>
+      <div style="font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:var(--charcoal);line-height:1;">40<span style="font-size:28px;color:var(--red);">%</span></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5;">of users cancel within <strong>2 months</strong> due to menu fatigue</div>
+      <div style="margin-top:16px;height:4px;background:rgba(255,59,48,0.12);border-radius:2px;overflow:hidden;">
+        <div style="height:100%;width:40%;background:var(--red);border-radius:2px;"></div>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border-radius:20px;padding:24px;box-shadow:var(--shadow-card);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-12px;right:-12px;width:80px;height:80px;background:rgba(244,162,38,0.08);border-radius:50%;"></div>
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--turmeric);margin-bottom:10px;">Daily Food Waste</div>
+      <div style="font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:var(--charcoal);line-height:1;">25<span style="font-size:28px;color:var(--turmeric);">%</span></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5;">of meals discarded — users throw away sides they <strong>didn't want</strong></div>
+      <div style="margin-top:16px;height:4px;background:rgba(244,162,38,0.12);border-radius:2px;overflow:hidden;">
+        <div style="height:100%;width:25%;background:var(--saffron);border-radius:2px;"></div>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border-radius:20px;padding:24px;box-shadow:var(--shadow-card);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-12px;right:-12px;width:80px;height:80px;background:rgba(52,199,89,0.07);border-radius:50%;"></div>
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);margin-bottom:10px;">Love the Price</div>
+      <div style="font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:var(--charcoal);line-height:1;">9<span style="font-size:28px;color:var(--green);">/10</span></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5;">users rate convenience &amp; cost highly — but <strong>hate the rigidity</strong></div>
+      <div style="margin-top:16px;height:4px;background:rgba(52,199,89,0.12);border-radius:2px;overflow:hidden;">
+        <div style="height:100%;width:90%;background:var(--green);border-radius:2px;"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Insight Cards -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+    <div style="background:var(--surface);border-radius:20px;padding:24px;box-shadow:var(--shadow-soft);border-left:4px solid var(--saffron);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:12px;background:#FFF3CD;display:flex;align-items:center;justify-content:center;font-size:18px;">🗣️</div>
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--charcoal);">User Insight</div>
+      </div>
+      <div style="font-size:13px;color:var(--slate);line-height:1.6;font-style:italic;">"I love that tiffin is cheap and delivered. I hate that I'm eating the same eggplant curry I explicitly hate — every single Tuesday."</div>
+      <div style="margin-top:12px;font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">— User Interview Synthesis</div>
+    </div>
+    <div style="background:var(--surface);border-radius:20px;padding:24px;box-shadow:var(--shadow-soft);border-left:4px solid var(--turmeric);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:12px;background:#FFF0D6;display:flex;align-items:center;justify-content:center;font-size:18px;">🍳</div>
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--charcoal);">Kitchen Owner Insight</div>
+      </div>
+      <div style="font-size:13px;color:var(--slate);line-height:1.6;font-style:italic;">"I want to give choices. But if 50 people want 50 different meals, my bulk-cooking model collapses. Margins disappear instantly."</div>
+      <div style="margin-top:12px;font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">— Kitchen Owner Interview</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DEFINE ─── -->
+<section style="max-width:1280px;margin:0 auto 80px;padding:0 32px;">
+  <div style="margin-bottom:36px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#E0F0FF,#BFDFFF);border-radius:20px;padding:6px 14px;margin-bottom:14px;">
+      <span style="font-size:14px;">🎯</span>
+      <span style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#0A4A8C;">Phase 02 · Define</span>
+    </div>
+    <div style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--charcoal);margin-bottom:8px;">The 4 W's &amp; Problem Statement</div>
+    <div style="font-size:14px;color:var(--muted);line-height:1.6;max-width:600px;">Narrowing the discovery findings into a crisp, actionable problem space.</div>
+  </div>
+
+  <!-- Problem Statement Banner -->
+  <div style="background:var(--charcoal);border-radius:24px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:rgba(244,162,38,0.1);border-radius:50%;"></div>
+    <div style="position:absolute;bottom:-20px;left:40%;width:120px;height:120px;background:rgba(244,162,38,0.06);border-radius:50%;"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:10px;">Problem Statement</div>
+    <div style="font-family:'Syne',sans-serif;font-size:clamp(16px,2.5vw,22px);font-weight:700;color:#FFF;line-height:1.5;max-width:700px;position:relative;">Urban professionals on tiffin subscriptions <span style="color:var(--saffron);">cannot customize their daily meals</span>, leading to menu fatigue, unnecessary food waste, and high churn — because kitchen operators rely on fixed bulk-cooking to stay profitable.</div>
+  </div>
+
+  <!-- 4 Ws Grid -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+    <div style="background:var(--surface);border-radius:18px;padding:20px;box-shadow:var(--shadow-soft);">
+      <div style="width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,#FFF3CD,#FFE082);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#92600A;margin-bottom:12px;">W</div>
+      <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--charcoal);margin-bottom:6px;">What</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">Professionals cannot customize daily subscription meals, leading to dissatisfaction and food waste.</div>
+    </div>
+    <div style="background:var(--surface);border-radius:18px;padding:20px;box-shadow:var(--shadow-soft);">
+      <div style="width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,#FFE0E0,#FFBDBD);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#9A1A1A;margin-bottom:12px;">W</div>
+      <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--charcoal);margin-bottom:6px;">Why</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">Traditional tiffin models rely on cooking one massive batch of a fixed menu to maintain low costs.</div>
+    </div>
+    <div style="background:var(--surface);border-radius:18px;padding:20px;box-shadow:var(--shadow-soft);">
+      <div style="width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,#E0F0FF,#BFDFFF);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#0A4A8C;margin-bottom:12px;">W</div>
+      <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--charcoal);margin-bottom:6px;">Where</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">Urban environments — working professionals in offices or bachelor accommodations in metro cities.</div>
+    </div>
+    <div style="background:var(--surface);border-radius:18px;padding:20px;box-shadow:var(--shadow-soft);">
+      <div style="width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,#E8F5E9,#C8E6C9);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#1B5E20;margin-bottom:12px;">W</div>
+      <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--charcoal);margin-bottom:6px;">How</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">Users receive unwanted dishes 2–3×/week, cannot swap them, and lose money if they cancel the day.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DEVELOP ─── -->
+<section style="max-width:1280px;margin:0 auto 80px;padding:0 32px;">
+  <div style="margin-bottom:36px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#E8F5E9,#C8E6C9);border-radius:20px;padding:6px 14px;margin-bottom:14px;">
+      <span style="font-size:14px;">💡</span>
+      <span style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1B5E20;">Phase 03 · Develop</span>
+    </div>
+    <div style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--charcoal);margin-bottom:8px;">Ideation &amp; The Core Concept</div>
+    <div style="font-size:14px;color:var(--muted);line-height:1.6;max-width:600px;">How do we give users freedom without destroying the kitchen's economics? The "Base + Swap" credit model.</div>
+  </div>
+
+  <!-- Core Concept -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;">
+
+    <!-- Left: Concept explanation -->
+    <div style="background:var(--surface);border-radius:24px;padding:28px;box-shadow:var(--shadow-card);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+        <div style="width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--saffron),var(--turmeric));display:flex;align-items:center;justify-content:center;font-size:22px;">🔄</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--charcoal);">Base + Swap System</div>
+          <div style="font-size:11px;color:var(--muted);">The core innovation</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:var(--slate);line-height:1.7;margin-bottom:16px;">The kitchen still cooks in bulk — but prepares <strong>3 specific menu variations</strong> instead of one. Users get a default meal but can swap individual items using in-app credits before <strong>8:00 PM the night before</strong>.</div>
+      <div style="background:var(--card-bg);border-radius:14px;padding:14px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--turmeric);margin-bottom:8px;">Example Swap</div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="background:rgba(255,59,48,0.1);border-radius:8px;padding:6px 10px;font-size:11px;color:var(--red);font-weight:600;">🍆 Eggplant Curry</div>
+          <div style="font-size:16px;color:var(--muted);">→</div>
+          <div style="background:rgba(52,199,89,0.12);border-radius:8px;padding:6px 10px;font-size:11px;color:var(--green);font-weight:600;">🧀 Paneer Masala</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: How it preserves margins -->
+    <div style="background:var(--charcoal);border-radius:24px;padding:28px;box-shadow:var(--shadow-card);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-30px;right:-30px;width:130px;height:130px;background:rgba(244,162,38,0.08);border-radius:50%;"></div>
+      <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:#FFF;margin-bottom:16px;">Why this protects the kitchen</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--saffron);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--charcoal);font-weight:700;flex-shrink:0;margin-top:1px;">1</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.5;">Kitchen cooks only <strong style="color:#FFF;">3 variations</strong> — not 50. Bulk efficiency preserved.</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--saffron);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--charcoal);font-weight:700;flex-shrink:0;margin-top:1px;">2</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.5;">Swaps must be requested by <strong style="color:#FFF;">8 PM the night before</strong> — giving prep time.</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--saffron);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--charcoal);font-weight:700;flex-shrink:0;margin-top:1px;">3</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.5;">Credits limit excessive swapping while still giving users <strong style="color:#FFF;">real autonomy</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Features -->
+  <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--charcoal);margin-bottom:14px;">Key Features Identified</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;">
+    <div style="background:var(--surface);border-radius:16px;padding:18px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:10px;">
+      <div style="font-size:24px;">⏭️</div>
+      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--charcoal);">Skip a Day</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.5;">Rolls daily cost into next month's credit. Zero money lost.</div>
+    </div>
+    <div style="background:var(--surface);border-radius:16px;padding:18px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:10px;">
+      <div style="font-size:24px;">📅</div>
+      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--charcoal);">Visual Calendar</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.5;">Full week's menu visible at a glance. Plan ahead with confidence.</div>
+    </div>
+    <div style="background:var(--surface);border-radius:16px;padding:18px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:10px;">
+      <div style="font-size:24px;">🔄</div>
+      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--charcoal);">Swap Interface</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.5;">One-tap bottom sheet to replace dishes before the nightly cutoff.</div>
+    </div>
+    <div style="background:var(--surface);border-radius:16px;padding:18px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:10px;">
+      <div style="font-size:24px;">🧪</div>
+      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--charcoal);">Taste Profile Quiz</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.5;">Onboarding sequence that blacklists hated ingredients permanently.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider before wireframes -->
+<div style="max-width:1280px;margin:0 auto 64px;padding:0 32px;">
+  <div style="border-top:1.5px dashed rgba(0,0,0,0.1);position:relative;">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#F0EAE0;padding:0 20px;">
+      <div style="background:var(--charcoal);color:var(--saffron);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:8px 16px;border-radius:20px;">04 · Deliver — Wireframes &amp; Prototype</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     VISUAL MOCKUPS
+══════════════════════════════ -->
+<section style="max-width:1280px;margin:0 auto 80px;padding:0 32px;">
+  <div style="margin-bottom:36px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#F3E8FF,#DDD6FE);border-radius:20px;padding:6px 14px;margin-bottom:14px;">
+      <span style="font-size:14px;">🖼️</span>
+      <span style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#5B21B6;">Visual Mockups</span>
+    </div>
+    <div style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--charcoal);margin-bottom:8px;">Midjourney Hero Images</div>
+    <div style="font-size:14px;color:var(--muted);line-height:1.6;max-width:580px;">High-fidelity lifestyle and UI mockups generated for portfolio presentation. Replace placeholders below with your rendered Midjourney outputs.</div>
+  </div>
+
+  <!-- Mockup 1 — UI Screen (9:16) -->
+  <div style="margin-bottom:28px;">
+    <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;">
+
+      <!-- Placeholder frame -->
+      <div style="flex:1;min-width:280px;max-width:420px;">
+        <div style="position:relative;border-radius:28px;overflow:hidden;aspect-ratio:9/16;max-height:640px;background:linear-gradient(160deg,#1C1C1E 0%,#2D1A00 40%,#7C3200 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 24px 60px rgba(0,0,0,0.25);">
+
+          <!-- Simulated app UI inside the mockup -->
+          <div style="width:85%;background:rgba(255,255,255,0.06);backdrop-filter:blur(10px);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">
+            <!-- App top bar -->
+            <div style="background:rgba(255,255,255,0.05);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#FFF;">FlexiTiff</div>
+              <div style="background:var(--saffron);border-radius:10px;padding:3px 8px;font-size:8px;font-weight:700;color:#1C1C1E;">4 Credits</div>
+            </div>
+            <!-- Calendar strip -->
+            <div style="display:flex;gap:4px;padding:8px 10px;background:rgba(0,0,0,0.2);">
+              <div style="flex:1;text-align:center;padding:5px 2px;border-radius:8px;background:var(--saffron);">
+                <div style="font-size:7px;color:rgba(0,0,0,0.5);">TUE</div>
+                <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#1C1C1E;">24</div>
+              </div>
+              <div style="flex:1;text-align:center;padding:5px 2px;border-radius:8px;">
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">WED</div>
+                <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#FFF;">25</div>
+              </div>
+              <div style="flex:1;text-align:center;padding:5px 2px;border-radius:8px;">
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">THU</div>
+                <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#FFF;">26</div>
+              </div>
+              <div style="flex:1;text-align:center;padding:5px 2px;border-radius:8px;">
+                <div style="font-size:7px;color:rgba(255,255,255,0.4);">FRI</div>
+                <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#FFF;">27</div>
+              </div>
+            </div>
+            <!-- Meal image placeholder -->
+            <div style="width:100%;height:90px;background:linear-gradient(135deg,#F4A226,#C4622E);display:flex;align-items:center;justify-content:center;font-size:40px;">🍛</div>
+            <!-- Meal info -->
+            <div style="padding:10px 12px;">
+              <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#FFF;margin-bottom:5px;">Tuesday Thali</div>
+              <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;">
+                <div style="background:rgba(255,255,255,0.1);border-radius:5px;padding:2px 6px;font-size:7px;color:rgba(255,255,255,0.7);">Dal Makhani</div>
+                <div style="background:rgba(255,255,255,0.1);border-radius:5px;padding:2px 6px;font-size:7px;color:rgba(255,255,255,0.7);">3 Rotis</div>
+                <div style="background:rgba(255,255,255,0.1);border-radius:5px;padding:2px 6px;font-size:7px;color:rgba(255,255,255,0.7);">Jeera Rice</div>
+              </div>
+              <div style="display:flex;gap:5px;">
+                <div style="flex:1;background:var(--saffron);border-radius:7px;padding:6px;font-size:7px;font-weight:700;color:#1C1C1E;text-align:center;">⇄ Swap Items</div>
+                <div style="flex:1;background:rgba(255,255,255,0.1);border-radius:7px;padding:6px;font-size:7px;font-weight:700;color:rgba(255,255,255,0.8);text-align:center;">⏭ Skip ₹150</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Replace label overlay -->
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:20px;pointer-events:none;">
+            <div style="background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);border:1px dashed rgba(255,255,255,0.2);border-radius:14px;padding:8px 16px;text-align:center;">
+              <div style="font-size:9px;color:rgba(255,255,255,0.5);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px;">Replace with Midjourney output</div>
+              <div style="font-size:8px;color:rgba(255,255,255,0.3);">--ar 9:16</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prompt + annotation -->
+      <div style="flex:1;min-width:280px;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+        <div>
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--turmeric);margin-bottom:8px;">Mockup 01 — UI Screen</div>
+          <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--charcoal);line-height:1.3;margin-bottom:12px;">High-Fidelity<br>App Screen</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px;">Intended as the hero image for the "Deliver" section — showcasing the Weekly Hub screen with a vibrant Indian thali meal, the calendar strip, and swap CTAs in Dribbble-style composition.</div>
+        </div>
+        <!-- Prompt box -->
+        <div style="background:var(--charcoal);border-radius:18px;padding:20px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;background:rgba(244,162,38,0.08);border-radius:50%;"></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:24px;height:24px;border-radius:8px;background:rgba(244,162,38,0.15);display:flex;align-items:center;justify-content:center;font-size:12px;">✦</div>
+            <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--saffron);">Midjourney Prompt</div>
+          </div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.75);line-height:1.7;font-style:italic;">"High fidelity UI/UX design of a food delivery subscription mobile app, iOS screen, showing a weekly meal calendar with beautiful photos of Indian thali meals, vibrant warm colors, clean typography, 'swap meal' buttons, dribbble style, 8k resolution <strong style="color:var(--saffron);">--ar 9:16</strong>"</div>
+        </div>
+        <!-- Tags -->
+        <div style="display:flex;flex-wrap:wrap;gap:7px;">
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:10px;color:var(--muted);">📐 9:16 Portrait</div>
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:10px;color:var(--muted);">🎨 Dribbble Style</div>
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:10px;color:var(--muted);">📱 iOS Screen</div>
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:10px;color:var(--muted);">🌶 Warm Palette</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Separator -->
+  <div style="height:1px;background:var(--border);margin:16px 0 36px;"></div>
+
+  <!-- Mockup 2 — Lifestyle (16:9) -->
+  <div>
+    <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap-reverse;">
+
+      <!-- Prompt + annotation -->
+      <div style="flex:1;min-width:280px;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+        <div>
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--turmeric);margin-bottom:8px;">Mockup 02 — Lifestyle</div>
+          <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--charcoal);line-height:1.3;margin-bottom:12px;">Context &amp; Lifestyle<br>Photography</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px;">Places the product in its real-world context — a young professional's morning routine. Anchors the case study in human reality, making the "Discover" persona data feel tangible and emotionally resonant.</div>
+        </div>
+        <!-- Prompt box -->
+        <div style="background:var(--charcoal);border-radius:18px;padding:20px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;background:rgba(244,162,38,0.08);border-radius:50%;"></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:24px;height:24px;border-radius:8px;background:rgba(244,162,38,0.15);display:flex;align-items:center;justify-content:center;font-size:12px;">✦</div>
+            <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--saffron);">Midjourney Prompt</div>
+          </div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.75);line-height:1.7;font-style:italic;">"Lifestyle mockup of a young professional using a smartphone in a modern apartment, viewing a food app, a sleek black bento box on the table next to them, soft natural morning lighting, realistic, 4k <strong style="color:var(--saffron);">--ar 16:9</strong>"</div>
+        </div>
+        <!-- Tags -->
+        <div style="display:flex;flex-wrap:wrap;gap:7px;">
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:10px;color:var(--muted);">🖥 16:9 Landscape</div>
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:10px;color:var(--muted);">📸 Lifestyle Photo</div>
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:10px;color:var(--muted);">☀️ Morning Light</div>
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:10px;color:var(--muted);">🍱 Black Bento Box</div>
+        </div>
+      </div>
+
+      <!-- Placeholder frame 16:9 -->
+      <div style="flex:1.4;min-width:300px;">
+        <div style="position:relative;border-radius:24px;overflow:hidden;aspect-ratio:16/9;background:linear-gradient(135deg,#1a1209 0%,#2d1f0a 35%,#3d2a10 60%,#1a1209 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 24px 60px rgba(0,0,0,0.25);">
+
+          <!-- Scene elements -->
+          <!-- Table surface suggestion -->
+          <div style="position:absolute;bottom:0;left:0;right:0;height:45%;background:linear-gradient(180deg,transparent,rgba(139,90,43,0.25));"></div>
+
+          <!-- Window light beam -->
+          <div style="position:absolute;top:0;right:15%;width:120px;height:100%;background:linear-gradient(180deg,rgba(255,220,120,0.12) 0%,rgba(255,200,80,0.04) 60%,transparent 100%);transform:skewX(-8deg);"></div>
+
+          <!-- Bento box suggestion -->
+          <div style="position:absolute;bottom:18%;left:12%;width:80px;height:55px;background:linear-gradient(135deg,#1a1a1a,#2c2c2c);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.5);display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,0.06);">
+            <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;padding:4px;gap:3px;">
+              <div style="background:linear-gradient(135deg,#F4A226,#E8861A);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;">🍛</div>
+              <div style="background:linear-gradient(135deg,#4CAF50,#2E7D32);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;">🥗</div>
+              <div style="background:linear-gradient(135deg,#FF9800,#E65100);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;">🫓</div>
+              <div style="background:linear-gradient(135deg,#795548,#3E2723);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;">🍲</div>
+            </div>
+          </div>
+
+          <!-- Phone screen glow -->
+          <div style="position:absolute;bottom:20%;right:18%;width:55px;height:95px;background:linear-gradient(160deg,#1C1C1E,#2D1A00);border-radius:10px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 0 30px rgba(244,162,38,0.2),0 8px 24px rgba(0,0,0,0.6);display:flex;flex-direction:column;overflow:hidden;">
+            <div style="background:var(--saffron);height:18px;display:flex;align-items:center;justify-content:center;">
+              <div style="font-size:7px;font-weight:800;color:#1C1C1E;font-family:'Syne',sans-serif;">FlexiTiff</div>
+            </div>
+            <div style="flex:1;padding:4px;display:flex;flex-direction:column;gap:3px;">
+              <div style="height:22px;background:linear-gradient(135deg,#F4A226,#C4622E);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;">🍛</div>
+              <div style="background:rgba(255,255,255,0.06);border-radius:3px;height:8px;"></div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:3px;height:6px;width:70%;"></div>
+              <div style="display:flex;gap:2px;margin-top:2px;">
+                <div style="flex:1;background:rgba(244,162,38,0.5);border-radius:3px;height:10px;"></div>
+                <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:3px;height:10px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Person silhouette suggestion (hands) -->
+          <div style="position:absolute;bottom:12%;right:14%;width:20px;height:30px;background:linear-gradient(180deg,rgba(180,130,90,0.6),rgba(150,100,60,0.4));border-radius:4px 4px 8px 8px;"></div>
+
+          <!-- Replace label -->
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+            <div style="background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);border:1px dashed rgba(255,255,255,0.2);border-radius:14px;padding:12px 20px;text-align:center;">
+              <div style="font-size:20px;margin-bottom:6px;">📸</div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.6);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Replace with Midjourney output</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.3);">Lifestyle · Morning Light · 16:9</div>
+            </div>
+          </div>
+        </div>
+        <!-- Usage tip -->
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:flex-start;background:var(--surface);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow-soft);">
+          <div style="font-size:16px;flex-shrink:0;">💡</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.6;"><strong style="color:var(--charcoal);">Portfolio tip:</strong> Use this as a full-width banner between the Define and Deliver sections on your website. The shallow depth-of-field and morning light anchors the "working professional" persona visually.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     FLOW 1: ONBOARDING
+══════════════════════════════ -->
+<section class="flow-section">
+  <div class="flow-header">
+    <div class="section-label">Flow 01</div>
+    <div class="section-title">Onboarding & Setup</div>
+    <div class="section-desc">From first impression to a personalized taste profile — 5 screens.</div>
+  </div>
+
+  <div class="phone-row">
+
+    <!-- Screen 1: Splash -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen splash-screen" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+          <div class="splash-logo-ring"><span class="logo-icon">🍱</span></div>
+          <div class="splash-app-name">FlexiTiff</div>
+          <div class="splash-tagline">Eat what you love · Always</div>
+          <div class="splash-loader">
+            <div class="splash-dot"></div>
+            <div class="splash-dot"></div>
+            <div class="splash-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">S1 · Splash</div>
+    </div>
+
+    <!-- Screen 2: Value Prop Carousel (Screen 2 of 3 shown) -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen carousel-screen">
+          <div class="carousel-hero">
+            <span class="carousel-emoji">🔄</span>
+            <div class="carousel-headline">Swap what you don't love.</div>
+            <div class="carousel-body">Not feeling the dal today? Swap sides with a single tap before 8:00 PM the night before.</div>
+          </div>
+          <div class="carousel-dots">
+            <div class="c-dot"></div>
+            <div class="c-dot active"></div>
+            <div class="c-dot"></div>
+          </div>
+          <button class="carousel-btn">Next →</button>
+        </div>
+      </div>
+      <div class="phone-label">S2 · Value Prop (2/3)</div>
+    </div>
+
+    <!-- Screen 3: Auth — Phone Entry -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen auth-screen">
+          <div style="font-size:28px;margin-top:8px;">👋</div>
+          <div class="screen-title">Let's get cooking.</div>
+          <div class="screen-sub">Enter your mobile number to continue. We'll send you a quick OTP to verify it's you.</div>
+          <div class="auth-flag-row">
+            <div class="auth-flag">🇮🇳 +91</div>
+            <div class="auth-input-fake">Enter your mobile number</div>
+          </div>
+          <div class="auth-microcopy">We'll send you a quick OTP to verify it's you.</div>
+          <button class="auth-btn">Send OTP →</button>
+          <div class="auth-terms">By continuing, you agree to our <span>Terms</span> & <span>Privacy Policy</span>.</div>
+        </div>
+      </div>
+      <div class="phone-label">S3 · Mobile Auth</div>
+    </div>
+
+    <!-- Screen 3b: OTP Verify -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen auth-screen">
+          <div style="font-size:28px;margin-top:8px;">🔐</div>
+          <div class="screen-title">Verify your number.</div>
+          <div class="screen-sub">Enter the 4-digit code sent to +91 98765 43210.</div>
+          <div class="otp-boxes">
+            <div class="otp-box filled">4</div>
+            <div class="otp-box filled">7</div>
+            <div class="otp-box active"></div>
+            <div class="otp-box"></div>
+          </div>
+          <div class="resend-text">Didn't receive it? <span>Resend code in 0:27</span></div>
+          <button class="auth-btn">Verify & Proceed →</button>
+        </div>
+      </div>
+      <div class="phone-label">S4 · OTP Verify</div>
+    </div>
+
+    <!-- Screen 4: Taste Profile -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen taste-screen">
+          <div class="screen-title">What do you crave? What do you hate?</div>
+          <div class="screen-sub">Choose your base. You can update this anytime.</div>
+          <div class="dietary-grid">
+            <div class="diet-card selected">
+              <span class="diet-icon">🌿</span>
+              <span class="diet-name">Pure Veg</span>
+              <div class="diet-check">✓</div>
+            </div>
+            <div class="diet-card">
+              <span class="diet-icon">🍗</span>
+              <span class="diet-name">Non-Veg</span>
+              <div class="diet-check">✓</div>
+            </div>
+            <div class="diet-card">
+              <span class="diet-icon">🥚</span>
+              <span class="diet-name">Eggetarian</span>
+              <div class="diet-check">✓</div>
+            </div>
+            <div class="diet-card">
+              <span class="diet-icon">🌱</span>
+              <span class="diet-name">Jain<br><span style="font-size:9px;color:var(--muted)">No onion/garlic</span></span>
+              <div class="diet-check">✓</div>
+            </div>
+          </div>
+          <div class="blacklist-label">Any strict no-nos? 🚫</div>
+          <div class="blacklist-tags">
+            <div class="bl-tag blocked">🚫 Bitter Gourd</div>
+            <div class="bl-tag blocked">🚫 Eggplant</div>
+            <div class="bl-tag">Mushrooms</div>
+            <div class="bl-tag liked">✓ Paneer</div>
+            <div class="bl-tag">Dairy</div>
+            <div class="bl-tag">Peanuts</div>
+          </div>
+          <button class="taste-cta">Build My Base Menu →</button>
+        </div>
+      </div>
+      <div class="phone-label">S5 · Taste Profile</div>
+    </div>
+
+    <!-- Screen 5: Plan Selection -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen plan-screen">
+          <div style="font-size:24px;margin-top:4px;">📋</div>
+          <div class="screen-title" style="margin-top:6px;">Choose your routine.</div>
+          <div class="screen-sub">Cancel or pause whenever you need to. No hidden fees.</div>
+          <div class="plan-card">
+            <div class="plan-name">The Workweek</div>
+            <div class="plan-details">5 Days (Mon–Fri) • Lunch Only</div>
+            <div class="plan-price">₹1,200 <span>/ week</span></div>
+            <div class="plan-perks">
+              <div class="plan-perk">✓ 5 swaps/week</div>
+              <div class="plan-perk">✓ Skip anytime</div>
+            </div>
+          </div>
+          <div class="plan-card selected">
+            <div class="plan-badge">Popular</div>
+            <div class="plan-name">The Full Setup</div>
+            <div class="plan-details">6 Days (Mon–Sat) • Lunch & Dinner</div>
+            <div class="plan-price">₹2,500 <span>/ week</span></div>
+            <div class="plan-perks">
+              <div class="plan-perk">✓ 10 swaps/week</div>
+              <div class="plan-perk">✓ Skip anytime</div>
+              <div class="plan-perk">✓ Priority delivery</div>
+            </div>
+          </div>
+          <button class="plan-cta">Proceed to Checkout →</button>
+        </div>
+      </div>
+      <div class="phone-label">S6 · Plan Selection</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     FLOW 2: CORE DASHBOARD
+══════════════════════════════ -->
+<section class="flow-section">
+  <div class="flow-header">
+    <div class="section-label">Flow 02</div>
+    <div class="section-title">Core Dashboard & Daily Management</div>
+    <div class="section-desc">The home hub, swap interaction, skip confirmation, and wallet — daily app loops.</div>
+  </div>
+
+  <div class="phone-row">
+
+    <!-- Screen 6: Home — Weekly Hub -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen home-screen">
+          <div class="home-nav">
+            <div>
+              <div class="home-greeting">Good morning,</div>
+              <div class="home-name">Rohan 👋</div>
+            </div>
+            <div style="display:flex;align-items:center;">
+              <div class="credits-pill">🪙 4 Credits</div>
+              <div class="home-avatar">😊</div>
+            </div>
+          </div>
+
+          <!-- Calendar Strip -->
+          <div class="cal-strip">
+            <div class="cal-day has-meal">
+              <div class="day-name">Mon</div>
+              <div class="day-num">23</div>
+            </div>
+            <div class="cal-day today has-meal">
+              <div class="day-name">Tue</div>
+              <div class="day-num">24</div>
+            </div>
+            <div class="cal-day has-meal">
+              <div class="day-name">Wed</div>
+              <div class="day-num">25</div>
+            </div>
+            <div class="cal-day has-meal">
+              <div class="day-name">Thu</div>
+              <div class="day-num">26</div>
+            </div>
+            <div class="cal-day">
+              <div class="day-name">Fri</div>
+              <div class="day-num">27</div>
+            </div>
+          </div>
+
+          <!-- Meal Card -->
+          <div class="meal-card">
+            <div class="meal-img">
+              🍛
+              <div class="meal-badge">Today's Meal</div>
+            </div>
+            <div class="meal-info">
+              <div class="meal-title">Tuesday Thali</div>
+              <div class="meal-items">
+                <div class="meal-item-tag">Dal Makhani</div>
+                <div class="meal-item-tag">3 Rotis</div>
+                <div class="meal-item-tag">Jeera Rice</div>
+                <div class="meal-item-tag">Pickle</div>
+              </div>
+              <div class="meal-actions">
+                <button class="meal-btn meal-btn-primary">⇄ Swap Items</button>
+                <button class="meal-btn meal-btn-secondary">⏭ Skip ₹150</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Nav -->
+          <div class="bottom-nav">
+            <div class="nav-item active">
+              <div class="nav-icon">🏠</div>
+              <div class="nav-label">Home</div>
+            </div>
+            <div class="nav-item">
+              <div class="nav-icon">📅</div>
+              <div class="nav-label">Calendar</div>
+            </div>
+            <div class="nav-item">
+              <div class="nav-icon">💳</div>
+              <div class="nav-label">Wallet</div>
+            </div>
+            <div class="nav-item">
+              <div class="nav-icon">👤</div>
+              <div class="nav-label">Profile</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">S7 · Home — Weekly Hub</div>
+    </div>
+
+    <!-- Screen 7: Swap Modal -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen swap-screen">
+          <!-- dimmed bg -->
+          <div class="swap-bg-mini home-screen" style="pointer-events:none;">
+            <div class="home-nav" style="padding:0 0 12px;">
+              <div>
+                <div class="home-greeting">Good morning,</div>
+                <div class="home-name">Rohan 👋</div>
+              </div>
+            </div>
+            <div class="meal-card" style="opacity:0.7;">
+              <div class="meal-img" style="height:80px;">🍛</div>
+            </div>
+          </div>
+          <div class="swap-overlay"></div>
+
+          <!-- Sheet -->
+          <div class="swap-sheet">
+            <div class="swap-handle"></div>
+            <div class="swap-title">Swap a dish 🔄</div>
+            <div class="swap-sub">Deadline: 8:00 PM tonight. Credits update instantly.</div>
+
+            <div class="current-item">
+              <div class="current-item-icon">🍚</div>
+              <div class="current-item-info">
+                <div class="current-item-label">Replacing</div>
+                <div class="current-item-name">Jeera Rice</div>
+              </div>
+              <div class="current-item-arrow">›</div>
+            </div>
+
+            <div class="swap-options-label">Available Swaps</div>
+
+            <div class="swap-option selected">
+              <div class="swap-radio"></div>
+              <div class="swap-option-icon">🫓</div>
+              <div class="swap-option-name">2 Extra Rotis</div>
+              <div class="swap-credit-badge free-badge">Free</div>
+            </div>
+
+            <div class="swap-option">
+              <div class="swap-radio"></div>
+              <div class="swap-option-icon">🌾</div>
+              <div class="swap-option-name">Quinoa Bowl</div>
+              <div class="swap-credit-badge credit-badge">1 Credit</div>
+            </div>
+
+            <div class="swap-option">
+              <div class="swap-radio"></div>
+              <div class="swap-option-icon">🥗</div>
+              <div class="swap-option-name">Kachumber Salad</div>
+              <div class="swap-credit-badge free-badge">Free</div>
+            </div>
+
+            <button class="swap-confirm-btn">Confirm Swap ✓</button>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">S8 · Swap Modal</div>
+    </div>
+
+    <!-- Screen 8: Skip Confirm -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen skip-screen">
+          <div class="skip-anim">✓</div>
+          <div class="skip-headline">Meal Skipped!</div>
+          <div class="skip-body">Your credit has been rolled over to next month's cycle. Zero waste, zero guilt.</div>
+          <div class="credit-added-pill">
+            <div class="credit-added-label">Credit Added to Wallet</div>
+            <div class="credit-added-amount">+ ₹150</div>
+            <div class="credit-added-desc">Valid until Apr 30, 2026</div>
+          </div>
+          <button class="skip-btn">View Tomorrow's Menu →</button>
+        </div>
+      </div>
+      <div class="phone-label">S9 · Skip Confirm</div>
+    </div>
+
+    <!-- Screen 9: Wallet -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen wallet-screen">
+          <div class="wallet-header">
+            <div class="wallet-nav-label">Flexi-Wallet</div>
+            <div class="wallet-balance-label">Available Credits</div>
+            <div class="wallet-balance">₹450</div>
+            <div class="wallet-renewal">Plan renews on Apr 30, 2026</div>
+          </div>
+          <div class="wallet-body">
+            <div class="wallet-section-title">Recent Activity</div>
+            <div class="txn-row">
+              <div class="txn-icon credit">↓</div>
+              <div style="flex:1;">
+                <div class="txn-name">Meal Skipped — Tue</div>
+                <div class="txn-date">Mar 24, 2026</div>
+              </div>
+              <div class="txn-amount credit">+₹150</div>
+            </div>
+            <div class="txn-row">
+              <div class="txn-icon debit">↑</div>
+              <div style="flex:1;">
+                <div class="txn-name">Quinoa Swap (1 credit)</div>
+                <div class="txn-date">Mar 23, 2026</div>
+              </div>
+              <div class="txn-amount debit">-₹50</div>
+            </div>
+            <div class="txn-row">
+              <div class="txn-icon credit">↓</div>
+              <div style="flex:1;">
+                <div class="txn-name">Plan Renewal — March</div>
+                <div class="txn-date">Mar 1, 2026</div>
+              </div>
+              <div class="txn-amount credit">+₹350</div>
+            </div>
+            <div class="txn-row">
+              <div class="txn-icon debit">↑</div>
+              <div style="flex:1;">
+                <div class="txn-name">Free Swap — Roti</div>
+                <div class="txn-date">Feb 28, 2026</div>
+              </div>
+              <div class="txn-amount" style="color:var(--muted);">Free</div>
+            </div>
+          </div>
+          <div class="bottom-nav">
+            <div class="nav-item">
+              <div class="nav-icon">🏠</div>
+              <div class="nav-label">Home</div>
+            </div>
+            <div class="nav-item">
+              <div class="nav-icon">📅</div>
+              <div class="nav-label">Calendar</div>
+            </div>
+            <div class="nav-item active">
+              <div class="nav-icon">💳</div>
+              <div class="nav-label">Wallet</div>
+            </div>
+            <div class="nav-item">
+              <div class="nav-icon">👤</div>
+              <div class="nav-label">Profile</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">S10 · Flexi-Wallet</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     PERSONA CARDS
+══════════════════════════════ -->
+<section class="persona-section">
+  <div class="flow-header">
+    <div class="section-label">User Personas</div>
+    <div class="section-title">Who We're Designing For</div>
+    <div class="section-desc">Two distinct archetypes that define every design decision in FlexiTiff.</div>
+  </div>
+
+  <div class="persona-grid">
+    <!-- Rohan -->
+    <div class="persona-card rohan">
+      <div class="persona-top">
+        <div class="persona-avatar">👨‍💻</div>
+        <div class="persona-meta">
+          <div class="persona-name">Rohan Mehta</div>
+          <div class="persona-role">28 · Software Engineer · Metro City</div>
+        </div>
+      </div>
+      <div class="persona-quote">"I work 10-hour days. I want a home-cooked meal when I get back, but I refuse to eat the same soggy eggplant and dal three days a week."</div>
+      <div class="persona-cols">
+        <div>
+          <div class="persona-col-title goals">Goals</div>
+          <div class="persona-point-list">
+            <div class="persona-point">Balanced, high-protein diet — no cooking</div>
+            <div class="persona-point">Easy pause for travel or dinner plans</div>
+            <div class="persona-point">Reduce personal food waste</div>
+          </div>
+        </div>
+        <div>
+          <div class="persona-col-title pain">Pain Points</div>
+          <div class="pain-list">
+            <div class="persona-point">WhatsApp-only service communication</div>
+            <div class="persona-point">Can't swap rice for extra protein</div>
+            <div class="persona-point">Loses money on skipped prepaid days</div>
+          </div>
+        </div>
+      </div>
+      <div class="persona-opp">
+        <div class="persona-opp-label">Design Opportunity</div>
+        <div class="persona-opp-text">Visual Meal Calendar with 1-tap "Skip & Roll Over Credit" + easy component swap before 8 PM.</div>
+      </div>
+    </div>
+
+    <!-- Priya -->
+    <div class="persona-card priya">
+      <div class="persona-top">
+        <div class="persona-avatar">👩‍🎨</div>
+        <div class="persona-meta">
+          <div class="persona-name">Priya Sharma</div>
+          <div class="persona-role">23 · Junior Architect · New City</div>
+        </div>
+      </div>
+      <div class="persona-quote">"I miss my mom's cooking. Restaurant food is too expensive, and my current tiffin is incredibly bland."</div>
+      <div class="persona-cols">
+        <div>
+          <div class="persona-col-title goals">Goals</div>
+          <div class="persona-point-list">
+            <div class="persona-point">Affordable, comforting home-style meals</div>
+            <div class="persona-point">Variety to beat menu fatigue</div>
+            <div class="persona-point">Tight monthly budget management</div>
+          </div>
+        </div>
+        <div>
+          <div class="persona-col-title pain">Pain Points</div>
+          <div class="pain-list">
+            <div class="persona-point">Stuck with karela every fixed Tuesday</div>
+            <div class="persona-point">Must cancel whole month for one bad meal</div>
+            <div class="persona-point">No way to flag disliked ingredients</div>
+          </div>
+        </div>
+      </div>
+      <div class="persona-opp">
+        <div class="persona-opp-label">Design Opportunity</div>
+        <div class="persona-opp-text">Onboarding "Taste Profile" with ingredient blacklist — auto-suggest alternatives when banned items appear on the menu.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     USER JOURNEY MAP
+══════════════════════════════ -->
+<section class="journey-section">
+  <div class="flow-header">
+    <div class="section-label">User Journey</div>
+    <div class="section-title">Rohan's Day-in-the-Life</div>
+    <div class="section-desc">From craving a meal change the night before, to a confirmed swap — the complete micro-interaction loop.</div>
+  </div>
+
+  <div class="journey-track">
+    <div class="journey-inner">
+
+      <div class="journey-step">
+        <div class="journey-dot">1</div>
+        <div class="journey-card">
+          <div class="journey-stage">Trigger</div>
+          <div class="journey-action">Checks tomorrow's menu at 7 PM</div>
+          <div class="journey-emotion">Sees Jeera Rice again. "I had this Monday too."</div>
+          <div class="journey-feeling">😒</div>
+        </div>
+      </div>
+
+      <div class="journey-step">
+        <div class="journey-dot">2</div>
+        <div class="journey-card">
+          <div class="journey-stage">Discovery</div>
+          <div class="journey-action">Spots "Swap Items" button on meal card</div>
+          <div class="journey-emotion">Taps it. Bottom sheet slides up instantly.</div>
+          <div class="journey-feeling">🤔</div>
+        </div>
+      </div>
+
+      <div class="journey-step">
+        <div class="journey-dot">3</div>
+        <div class="journey-card">
+          <div class="journey-stage">Decision</div>
+          <div class="journey-action">Picks "2 Extra Rotis" (Free swap)</div>
+          <div class="journey-emotion">Sees the credit cost clearly. No surprises.</div>
+          <div class="journey-feeling">🙂</div>
+        </div>
+      </div>
+
+      <div class="journey-step">
+        <div class="journey-dot">4</div>
+        <div class="journey-card">
+          <div class="journey-stage">Confirmation</div>
+          <div class="journey-action">Taps "Confirm Swap"</div>
+          <div class="journey-emotion">Meal card updates instantly. Feels in control.</div>
+          <div class="journey-feeling">😌</div>
+        </div>
+      </div>
+
+      <div class="journey-step">
+        <div class="journey-dot">5</div>
+        <div class="journey-card">
+          <div class="journey-stage">Outcome</div>
+          <div class="journey-action">Meal delivered — exactly as customized</div>
+          <div class="journey-emotion">Eats happily. Rates 5 stars. Stays subscribed.</div>
+          <div class="journey-feeling">😄</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     WORKING PROTOTYPE
+══════════════════════════════ -->
+<section style="max-width:1280px;margin:0 auto 80px;padding:0 32px;">
+
+  <!-- Section header -->
+  <div style="margin-bottom:36px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1C1C1E,#2D1A00);border-radius:20px;padding:6px 14px;margin-bottom:14px;">
+      <span style="font-size:12px;">⚡</span>
+      <span style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--saffron);">Live Build</span>
+    </div>
+    <div style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--charcoal);margin-bottom:8px;">Working Prototype</div>
+    <div style="font-size:14px;color:var(--muted);line-height:1.6;max-width:580px;">The wireframes above are brought to life — a fully interactive, deployed prototype you can tap through right now. No Figma link, no InVision handoff. Just the real thing.</div>
+  </div>
+
+  <!-- Main prototype block -->
+  <div style="display:grid;grid-template-columns:1fr 1.8fr;gap:24px;align-items:start;">
+
+    <!-- Left: context + CTA -->
+    <div style="display:flex;flex-direction:column;gap:16px;">
+
+      <!-- What's inside -->
+      <div style="background:var(--surface);border-radius:20px;padding:22px;box-shadow:var(--shadow-card);">
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--charcoal);margin-bottom:14px;">What's inside</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:28px;height:28px;border-radius:9px;background:#FFF3CD;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🍱</div>
+            <div style="font-size:12px;color:var(--slate);line-height:1.4;">Onboarding with Taste Profile quiz</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:28px;height:28px;border-radius:9px;background:#FFF0D6;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">📅</div>
+            <div style="font-size:12px;color:var(--slate);line-height:1.4;">Weekly meal calendar hub</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:28px;height:28px;border-radius:9px;background:#E8F5E9;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🔄</div>
+            <div style="font-size:12px;color:var(--slate);line-height:1.4;">Live Swap modal with credit system</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:28px;height:28px;border-radius:9px;background:#F3E8FF;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">💳</div>
+            <div style="font-size:12px;color:var(--slate);line-height:1.4;">Flexi-Wallet &amp; transaction history</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:28px;height:28px;border-radius:9px;background:#FFE8E8;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">⏭️</div>
+            <div style="font-size:12px;color:var(--slate);line-height:1.4;">Skip &amp; credit rollover confirmation</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stack badge -->
+      <div style="background:var(--surface);border-radius:20px;padding:18px 22px;box-shadow:var(--shadow-soft);">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:10px;">Built with</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;">
+          <div style="background:var(--card-bg);border-radius:20px;padding:5px 12px;font-size:10px;font-weight:600;color:var(--slate);">React</div>
+          <div style="background:var(--card-bg);border-radius:20px;padding:5px 12px;font-size:10px;font-weight:600;color:var(--slate);">Tailwind CSS</div>
+          <div style="background:var(--card-bg);border-radius:20px;padding:5px 12px;font-size:10px;font-weight:600;color:var(--slate);">Vercel</div>
+        </div>
+      </div>
+
+      <!-- Open button -->
+      <a href="https://flexitiffin-app.vercel.app" target="_blank" style="text-decoration:none;">
+        <div style="background:linear-gradient(135deg,var(--saffron),var(--turmeric));border-radius:18px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;box-shadow:0 8px 24px rgba(244,162,38,0.35);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--charcoal);">Open Live App</div>
+            <div style="font-size:11px;color:rgba(0,0,0,0.5);margin-top:2px;">flexitiffin-app.vercel.app</div>
+          </div>
+          <div style="width:40px;height:40px;background:rgba(0,0,0,0.12);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:18px;">↗</div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Right: iframe embed -->
+    <div style="position:relative;">
+
+      <!-- Device chrome -->
+      <div style="background:var(--charcoal);border-radius:28px;padding:14px;box-shadow:0 32px 80px rgba(0,0,0,0.28);">
+
+        <!-- Browser bar -->
+        <div style="background:#2C2C2E;border-radius:14px 14px 0 0;padding:10px 14px;display:flex;align-items:center;gap:8px;margin-bottom:2px;">
+          <div style="display:flex;gap:5px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#FF5F57;"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:#FEBC2E;"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:#28C840;"></div>
+          </div>
+          <div style="flex:1;background:#3A3A3C;border-radius:6px;padding:5px 10px;display:flex;align-items:center;gap:6px;">
+            <div style="font-size:9px;color:rgba(255,255,255,0.3);">🔒</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.5);font-family:'DM Sans',sans-serif;">flexitiffin-app.vercel.app</div>
+          </div>
+          <a href="https://flexitiffin-app.vercel.app" target="_blank" style="text-decoration:none;">
+            <div style="background:rgba(244,162,38,0.15);border-radius:6px;padding:4px 8px;font-size:9px;color:var(--saffron);font-weight:600;white-space:nowrap;">↗ Open</div>
+          </a>
+        </div>
+
+        <!-- iFrame -->
+        <iframe
+          src="https://flexitiffin-app.vercel.app"
+          style="width:100%;height:620px;border:none;border-radius:0 0 14px 14px;display:block;background:#fff;"
+          title="FlexiTiff Working Prototype"
+          loading="lazy"
+          allow="fullscreen">
+        </iframe>
+      </div>
+
+      <!-- Floating interaction hint -->
+      <div style="position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);background:var(--charcoal);color:#FFF;border-radius:20px;padding:8px 18px;font-size:11px;font-weight:600;white-space:nowrap;box-shadow:var(--shadow-card);display:flex;align-items:center;gap:6px;">
+        <span style="font-size:14px;">👆</span> Tap and interact — it's fully live
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <p><strong>FlexiTiff</strong> — UX Case Study · Double Diamond Process · UI Wireframes & Copy</p>
+  <p style="margin-top:6px;">Designed for UX Portfolio · Built with HTML/CSS · 2026</p>
+</footer>
+
+</body>
+</html>
